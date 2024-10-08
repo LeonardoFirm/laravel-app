@@ -1,0 +1,140 @@
+.content-welcome {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 100px;
+
+    .paragrafo-welcome {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo-welcome {
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        border-radius: 14px;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+
+    .form {
+        width: 1200px;
+        margin-left: 100px;
+
+        .form-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    .form-login {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 960px;
+        margin-left: 100px;
+
+        .form-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .links-importantes-login {
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            a {
+                text-decoration: none;
+                color: $default-text;
+                transition: 0.5s;
+            }
+
+            a:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+
+}
+
+.info-cliente {
+    font-size: 14px;
+}
+
+.iniciar {
+    background-color: #ffffe0;
+    /* Amarelo claro */
+}
+
+.finalizar {
+    background-color: #e0ffe0;
+    /* Verde claro */
+}
+
+@keyframes dots {
+    0% {
+        content: "";
+    }
+
+    33% {
+        content: ".";
+    }
+
+    66% {
+        content: "..";
+    }
+
+    100% {
+        content: "...";
+    }
+}
+
+span.iniciado {
+    font-weight: bold;
+
+    i {
+        margin-left: 5px;
+        color: #3498db; // Cor do ícone (personalizável)
+    }
+
+    &::after {
+        content: "";
+        animation: dots 1.5s steps(1, end) infinite;
+        display: inline-block;
+        width: 20px;
+    }
+}
+
+article {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+
+    .export-csv {
+        margin-left: 20px;
+    }
+}
+
+.content-excel {
+    position: absolute;
+    bottom: 23px;
+    right: 23px;
+}
