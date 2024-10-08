@@ -25,7 +25,7 @@ COPY . .
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Exponha a porta do PHP-FPM
-EXPOSE 9000
+EXPOSE 80
 
 # Inicie o PHP-FPM
 CMD ["php-fpm"]
