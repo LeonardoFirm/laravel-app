@@ -1,0 +1,11 @@
+Migrar => php artisan migrate
+Adicionar dados => php artisan db:seed --class=MarcasModelosSeeder
+
+Abrir Tinker => php artisan tinker
+Criar usuario => use App\Models\User;
+
+User::create([
+    'name' => 'Nome do Usuário',
+    'email' => 'email@example.com',
+    'password' => bcrypt('senha'), // Use bcrypt para hash da senha
+]);

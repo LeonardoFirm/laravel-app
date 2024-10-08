@@ -1,0 +1,71 @@
+html,
+body {
+    margin: 0;
+    background: $background-default;
+}
+
+.wrapper {
+    display: flex;
+    background-color: $background-default;
+}
+
+.sidebar {
+    background: $sidebar-bg;
+    color: $sidebar-text-a;
+    width: 250px;
+    height: 100vh;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    background: $sidebar-bg;
+    padding: 15px;
+    text-align: left;
+}
+
+.sidebar ul li a {
+    color: $sidebar-text-a;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    color: $sidebar-color;
+}
+
+.container {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+}
+
+.menu-items {
+    flex-grow: 1;
+}
+
+img {
+    margin: 12px;
+    width: 200px;
+}
+
+.bottom-item {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    transform: translate(-0, -0);
+    margin-bottom: 15px;
+}
