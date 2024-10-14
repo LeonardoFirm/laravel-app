@@ -1,0 +1,11 @@
+.ul-task {
+    list-style-type: none;
+    padding: 0;
+
+    .li-task {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 4px;
+        text-transform: uppercase;
+    }
+}

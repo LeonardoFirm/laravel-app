@@ -1,0 +1,25 @@
+.btn-warning {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: $sidebar-color;
+    --bs-btn-border-color: linear-gradient(-135deg, rgb(91, 3, 228) 0%, rgb(192, 58, 254) 100%) !important;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #e0a800;
+    --bs-btn-hover-border-color: linear-gradient(-135deg, rgb(192, 58, 254) 0%, rgb(91, 3, 228) 100%) !important;
+    --bs-btn-focus-shadow-rgb: 91, 3, 228 !important;
+    color: $text-light !important;
+    background: $sidebar-color;
+    border-color: var(--bs-btn-border-color);
+    border-radius: 0;
+}
+
+.btn-warning:hover {
+    color: var(--bs-btn-hover-color);
+    background: $sidebar-color-hover;
+    border-color: var(--bs-btn-hover-border-color);
+    transition: 0.5s !important;
+}
+
+.btn-warning:focus,
+.btn-warning.focus {
+    box-shadow: 0 0 0 0.2rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+}

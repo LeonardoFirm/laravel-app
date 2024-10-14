@@ -18,7 +18,9 @@ class CreateClientesTable extends Migration
             $table->string('endereco');
             $table->string('bairro');
             $table->integer('numero');
+            $table->string('cidade');
             $table->string('cep');
+            $table->string('uf');
             $table->timestamps();
         });
     }

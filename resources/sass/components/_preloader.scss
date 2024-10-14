@@ -1,0 +1,57 @@
+@import 'colors';
+
+// Estilo do preloader
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(1, 1, 1, 1) 100%);
+    box-shadow: 5px 5px 5px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+
+    .centro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .loading {
+            color: $text-light;
+            margin-top: 10px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-top: 5px solid $text-light;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        }
+    }
+
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

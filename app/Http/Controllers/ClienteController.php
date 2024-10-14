@@ -34,7 +34,9 @@ class ClienteController extends Controller
             'endereco' => 'required',
             'bairro' => 'required',
             'numero' => 'required|integer',
+            'cidade' => 'required',
             'cep' => 'required',
+            'uf' => 'required',
         ]);
 
         $cliente = Cliente::create($request->all());
@@ -60,6 +62,7 @@ class ClienteController extends Controller
         $request->validate([
             'modelo' => 'required|exists:modelos,id',
             'servico_id' => 'required|exists:servicos,id',
+            'placaVeiculo' => 'required|string|max:7'
         ]);
 
         $cliente = Cliente::find($cliente_id);
@@ -71,10 +74,11 @@ class ClienteController extends Controller
         }
 
         Task::create([
-            'title' => "{$cliente->nome} {$cliente->sobrenome} - Modelo: {$modelo->nome} - Serviço: {$servico->nome}",
+            'title' => "Cliente: {$cliente->nome} {$cliente->sobrenome} - Carro/Modelo: {$modelo->nome} - Placa: {$request->placaVeiculo} - Serviço: {$servico->nome}",
             'cliente_id' => $cliente->id,
             'servico_id' => $servico->id,
-            'status' => 'não iniciada'
+            'status' => 'não iniciada',
+            'placa_veiculo' => $request->placaVeiculo,
         ]);
 
         return redirect()->route(Auth::check() ? 'tasks.index' : 'home');
@@ -105,35 +109,65 @@ class ClienteController extends Controller
     }
 
     public function exportarCsv()
-{
-    $clientes = Cliente::all();
-    $fileName = 'clientes.csv';
+    {
+        $clientes = Cliente::all();
+        $fileName = 'clientes.csv';
 
-    // Definindo o cabeçalho para download do CSV
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="' . $fileName . '"');
-    header('Pragma: no-cache');
-    header('Expires: 0');
+        // Definindo o cabeçalho para download do CSV
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $fileName . '"');
+        header('Pragma: no-cache');
+        header('Expires: 0');
 
-    $output = fopen('php://output', 'w');
+        $output = fopen('php://output', 'w');
 
-    fputcsv($output, ['Nome', 'Sobrenome', 'Telefone', 'Celular', 'CPF/CNPJ', 'Endereco', 'Numero', 'Bairro', 'cep']);
+        fputcsv($output, ['Nome', 'Sobrenome', 'Telefone', 'Celular', 'CPF/CNPJ', 'Endereco', 'Numero', 'Bairro', 'Cidade', 'UF', 'cep']);
 
-    foreach ($clientes as $cliente) {
-        fputcsv($output, [
-            $cliente->nome,
-            $cliente->sobrenome,
-            $cliente->formatted_telefone,
-            $cliente->formatted_celular,
-            $cliente->formatted_cpf_cnpj,
-            $cliente->endereco,
-            $cliente->numero,
-            $cliente->bairro,
-            $cliente->cep
-        ]);
+        foreach ($clientes as $cliente) {
+            fputcsv($output, [
+                $cliente->nome,
+                $cliente->sobrenome,
+                $cliente->formatted_telefone,
+                $cliente->formatted_celular,
+                $cliente->formatted_cpf_cnpj,
+                $cliente->endereco,
+                $cliente->numero,
+                $cliente->bairro,
+                $cliente->cidade,
+                $cliente->uf,
+                $cliente->cep
+            ]);
+        }
+
+        fclose($output);
+        exit;
     }
 
-    fclose($output);
-    exit;
-}
+    public function adminDashboard()
+    {
+        $valorPorServico = [
+            'nao_iniciadas' => 100, // exemplo de valor
+            'iniciadas' => 200,
+            'avisar' => 150,
+            'finalizadas' => 300,
+        ];
+
+        $valorTotalServicos = Task::where('status', 'finalizada')
+            ->join('servicos', 'tasks.servico_id', '=', 'servicos.id')
+            ->sum('servicos.valor');
+
+        $totalClientes = Cliente::count();
+
+        $statusTarefas = [
+            'nao_iniciadas' => Task::whereNotIn('status', ['iniciada', 'finalizada'])->count(),
+            'iniciadas' => Task::where('status', 'iniciada')->count(),
+            'avisar' => Task::where('status', 'avisar')->count(),
+            'finalizadas' => Task::where('status', 'finalizada')->count(),
+        ];
+
+        $clientesRecemCadastrados = Cliente::orderBy('created_at', 'desc')->take(10)->get();
+
+        return view('admin.dashboard', compact('valorTotalServicos', 'totalClientes', 'statusTarefas', 'clientesRecemCadastrados', 'valorPorServico'));
+    }
+
 }

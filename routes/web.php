@@ -4,12 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SuporteController;
 
 // Rotas de tarefas
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index')->middleware('auth');
 Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store')->middleware('auth');
 Route::post('/tasks/iniciar/{id}', [TaskController::class, 'iniciar'])->name('tasks.iniciar')->middleware('auth');
+Route::post('/tasks/avisar/{id}', [TaskController::class, 'avisar'])->name('tasks.avisar')->middleware('auth');
 Route::post('/tasks/finalizar/{id}', [TaskController::class, 'finalizar'])->name('tasks.finalizar')->middleware('auth');
+
+// Rota para o dashboard administrativo
+Route::get('/admin/dashboard', [ClienteController::class, 'adminDashboard'])->name('admin.dashboard')->middleware('auth');
+
+// Rotas de suporte
+Route::get('/suporte', [SuporteController::class, 'index'])->name('suporte.index')->middleware('auth');
 
 // Rotas de clientes
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index')->middleware('auth');

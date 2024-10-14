@@ -1,11 +1,30 @@
-Migrar => php artisan migrate
-Adicionar dados => php artisan db:seed --class=MarcasModelosSeeder
+## Comandos
 
-Abrir Tinker => php artisan tinker
-Criar usuario => use App\Models\User;
+##Adicionar dados
+php artisan db:seed --class=MarcasModelosSeeder
+## Migrar
+php artisan migrate
 
+## Abrir Tinker
+php artisan tinker
+## Criar usuario
+use App\Models\User;
 User::create([
     'name' => 'Nome do Usuário',
     'email' => 'email@example.com',
     'password' => bcrypt('senha'), // Use bcrypt para hash da senha
 ]);
+
+## Modificar uma tabela
+php artisan make:migration modify_cidade_type_in_clientes_table --table=clientes
+## Migrar
+php artisan migrate
+
+## Excluir o Banco de Dados Existente
+Remove-Item -Path database\database.sqlite -Force
+## Criar um Novo Arquivo do Banco de Dados
+New-Item -ItemType File -Path database\database.sqlite
+
+## Remover alguma pasta ou arquivo
+Remove-Item -Path app\Notifications -Recurse -Force
+## Subistitua app\Notifications pelos seus

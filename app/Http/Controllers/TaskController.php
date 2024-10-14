@@ -33,11 +33,17 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
+    public function avisar($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->update(['status' => 'avisar']);
+        return redirect()->route('tasks.index');
+    }
+
     public function finalizar($id)
     {
         $task = Task::findOrFail($id);
         $task->update(['status' => 'finalizada']);
         return redirect()->route('tasks.index');
     }
-
 }

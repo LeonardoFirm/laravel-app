@@ -1,48 +1,197 @@
-.content-welcome {
+.asterisco {
+    color: $third-color;
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: $text-color;
+    text-transform: uppercase;
+    font-size: 9px;
+    width: 33.33%;
+    float: left;
+    position: relative;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-left: 100px;
+}
 
-    .paragrafo-welcome {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    line-height: 20px;
+    display: block;
+    font-size: 10px;
+    color: $text-color;
+    background: white;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
+    border: 1px solid #000;
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1;
+}
+
+#progressbar li:first-child:after {
+    content: none;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after,
+#progressbar li.completed:before,
+#progressbar li.completed:after {
+    background: $secondary-color;
+    color: $text-color;
+    border: none;
+}
+
+#progressbar li.completed {
+    color: $secondary-color;
+    font-weight: bold;
+    border: none;
+}
+
+.obrigatorio {
+    margin-top: -10px;
+    font-size: 13px;
+    color: $third-color;
+}
+
+
+.form-login {
+    .card {
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0.7) !important;
     }
 
-    .logo-welcome {
-        justify-content: center;
-        align-items: center;
-        width: 500px;
-        border-radius: 14px;
+    .titulo-form-login {
+        text-align: center;
+        margin-bottom: 20px;
+        color: $text-light;
+    }
+
+    label {
+        color: $text-light;
     }
 }
 
 @media only screen and (min-width: 769px) {
+    .card {
+        border-radius: 0;
+    }
 
     .form {
-        width: 1200px;
-        margin-left: 100px;
+
+        .card {
+            border-radius: 0;
+        }
+
+        .form-control {
+            border-top: 0;
+            border-left: 1px solid;
+            border-right: 0;
+            border-bottom: 1px solid;
+            border-color: #ddd;
+            border-radius: 0;
+        }
+
+        .form-control:focus {
+            border-color: #ddd;
+            outline: 0;
+            box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.175);
+        }
+
+        .form-control::placeholder {
+            opacity: 1;
+        }
+
+        .form-select {
+            border-top: 0;
+            border-left: 1px solid;
+            border-right: 0;
+            border-bottom: 1px solid;
+            border-color: #ddd;
+            border-radius: 0;
+            box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.175);
+        }
+
+        .form-select:focus {
+            border-color: #ddd;
+            outline: 0;
+            box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.175);
+        }
+
+        .form-select::placeholder {
+            color: #bebebe;
+            opacity: 1;
+        }
 
         .form-btn {
             display: flex;
-            justify-content: center;
+            justify-content: right;
             align-items: center;
-            text-align: center;
+            text-align: right;
+            padding: 15px 0;
 
             button {
-                width: 100%;
+                width: 200px;
             }
+        }
+
+        .form-btn-double {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .placa-veiculo {
+            text-transform: uppercase;
         }
     }
 
     .form-login {
-        position: fixed;
+
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        max-width: 960px;
-        margin-left: 100px;
+        width: 500px;
+
+        .form-control {
+            border-top: 0;
+            border-left: 1px solid;
+            border-right: 0;
+            border-bottom: 1px solid;
+            border-color: #ddd;
+            border-radius: 0;
+        }
+
+        .form-control:focus {
+            border-color: #ddd;
+            outline: 0;
+            box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.175);
+        }
+
+        .form-control::placeholder {
+            color: #bebebe;
+            opacity: 1;
+        }
 
         .form-btn {
             display: flex;
@@ -63,7 +212,7 @@
 
             a {
                 text-decoration: none;
-                color: $default-text;
+                color: $text-color;
                 transition: 0.5s;
             }
 
@@ -73,20 +222,123 @@
         }
     }
 
+    .content-excel {
+        position: fixed;
+        bottom: 42px;
+        right: 3%;
+        transform: translate(-50%, -50%);
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    .info-form-cliente {
+        text-align: center;
+    }
+
+    .form {
+        .card {
+            border-radius: 0;
+        }
+
+        .info-form-cadastro {
+            text-align: center;
+        }
+
+        .form-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px 0;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .form-btn-double {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 15px 0;
+        }
+    }
+
+    .form-login {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0 20px;
+        width: 100%;
+
+        .form-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .links-importantes-login {
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            a {
+                text-decoration: none;
+                color: $text-color;
+                transition: 0.5s;
+            }
+
+            a:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+
+    .content-excel {
+        position: fixed;
+        bottom: 0;
+        right: 1%;
+        transform: translate(-50%, -50%);
+    }
+
 }
 
 .info-cliente {
     font-size: 14px;
 }
 
+.text-pedido {
+    background: linear-gradient(105deg, rgb(51, 102, 204) 0%, rgb(99, 148, 247) 100%);
+    color: $text-pedido;
+    font-size: 12px;
+}
+
 .iniciar {
-    background-color: #ffffe0;
-    /* Amarelo claro */
+    background: linear-gradient(105deg, rgb(220, 57, 18) 0%, rgb(247, 127, 97) 100%);
+    color: $text-iniciar;
+    font-size: 12px;
+}
+
+.avisar {
+    background: linear-gradient(105deg, rgb(255, 153, 0) 0%, rgb(248, 188, 98) 100%);
+    color: $text-avisar;
+    font-size: 12px;
 }
 
 .finalizar {
-    background-color: #e0ffe0;
-    /* Verde claro */
+    background: linear-gradient(105deg, rgb(16, 150, 24) 0%, rgb(98, 250, 108) 100%);
+    color: $text-finalizar;
+    font-size: 12px;
 }
 
 @keyframes dots {
@@ -112,7 +364,7 @@ span.iniciado {
 
     i {
         margin-left: 5px;
-        color: #3498db; // Cor do ícone (personalizável)
+        color: #3498db;
     }
 
     &::after {
@@ -123,18 +375,51 @@ span.iniciado {
     }
 }
 
-article {
-    display: flex;
-    justify-items: center;
-    align-items: center;
+.btn-delete {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
 
-    .export-csv {
-        margin-left: 20px;
+.export-csv {
+    margin-left: 20px;
+}
+
+.card-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    list-style-type: none;
+    flex-direction: column;
+
+    >li {
+        font-weight: 600;
+        font-size: 26px;
+    }
+
+    >p {
+        font-size: 20px;
     }
 }
 
-.content-excel {
-    position: absolute;
-    bottom: 23px;
-    right: 23px;
+.text-green {
+    color: rgb(4, 133, 4);
+}
+
+.text-blue {
+    color: rgb(53, 80, 236);
+}
+
+.font-valor-total-servico {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.lista-clientes {
+    list-style-type: none;
+}
+
+td {
+    scroll-behavior: smooth;
 }

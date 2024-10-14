@@ -18,7 +18,9 @@ class Cliente extends Model
         'endereco',
         'bairro',
         'numero',
+        'cidade',
         'cep',
+        'uf',
     ];
 
     public function getFormattedCpfCnpjAttribute()

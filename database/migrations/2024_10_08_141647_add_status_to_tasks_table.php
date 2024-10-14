@@ -8,9 +8,12 @@ class AddStatusToTasksTable extends Migration
 {
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->string('status')->default('não iniciada')->after('servico_id'); // Ajuste conforme necessário
-        });
+        // Verifica se a coluna 'status' já existe
+        if (!Schema::hasColumn('tasks', 'status')) {
+            Schema::table('tasks', function (Blueprint $table) {
+                $table->string('status')->default('não iniciada')->after('servico_id'); // Ajuste conforme necessário
+            });
+        }
     }
 
     public function down()

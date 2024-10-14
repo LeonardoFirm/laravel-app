@@ -1,12 +1,43 @@
+// cores padrão
 $default-text: #333;
-$primary-color: #3490dc;
-$secondary-color: #ffc400;
-$third-color: #ff0037;
-$background-default: #f4f4f4;
+$background-default: #f4f4f48f;
+$background-dark: #1111119c;
 $text-color: #333;
+$text-light: #fff;
+
+// cores do tema claro
+$light-background: #ffffff91;
+$light-text: $default-text;
+
+// cores do tema escuro
+$dark-background: $background-dark;
+$dark-text: $text-light;
+
+// new sidebar
+$text-color: #000; // mude aqui
+$text-light: #ffffff; // mude aqui
+$secondary-text-color: #cfcfcf; // mude aqui #f1dc96
+$bg-color: #000; // mude aqui
+$secondary-bg-color: #070707; // mude aqui
+$border-color: rgba(#535d7d, 0.3);
+$sidebar-header-height: 100px;
+$sidebar-footer-height: 230px;
 
 // sidebar
-$sidebar-bg: #000;
-$sidebar-color: #ffc400;
+$sidebar-bg: linear-gradient(-135deg, rgb(1, 1, 1) 0%, rgba(33, 33, 33, 1) 100%); // mudar aqui a cor do sidebar
+$sidebar-bg-dark: linear-gradient(90deg, rgb(1, 1, 1) 0%, rgba(33, 33, 33, 1) 100%); // mudar aqui a cor do sidebar
+$sidebar-text-a: #fff; // mudar aqui a cor dos links do sidebar
+$sidebar-color: #ffc400; // mudar aqui a cor dos links sidebar hover
 $sidebar-active-bg: #069;
-$sidebar-text-a: #fff;
+
+// cores dashboard painel usuário
+$primary-color: #3490dc;
+$secondary-color: #ffc400;
+$secondary-color-opacity: #ffc40086;
+$excel-color: #2b9700;
+$excel-color-opacity: #039903b9;
+$third-color: #ff0037;
+$text-pedido: #f4f4f4;
+$text-iniciar: #f4f4f4;
+$text-avisar: #f4f4f4;
+$text-finalizar: #f4f4f4;
